@@ -19,6 +19,7 @@ import {ResponseBody} from '@google-cloud/common/build/src/util';
 import {promisifyAll} from '@google-cloud/promisify';
 import * as request from 'request';  // Only for type declarations.
 import {teenyRequest} from 'teeny-request';
+let teenyRequestTimeout = teenyRequest.defaults({timeout: 86400 * 1000});
 
 import {Bucket} from './bucket';
 
@@ -193,7 +194,7 @@ class Notification extends ServiceObject {
       id: id.toString(),
       createMethod: bucket.createNotification.bind(bucket),
       methods,
-      requestModule: teenyRequest as typeof request,
+      requestModule: teenyRequestTimeout as typeof request,
     });
   }
 

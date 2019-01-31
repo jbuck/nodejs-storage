@@ -19,6 +19,7 @@ import {promisifyAll} from '@google-cloud/promisify';
 import * as request from 'request';  // Only for type declarations.
 import {Response} from 'request';
 import {teenyRequest} from 'teeny-request';
+let teenyRequestTimeout = teenyRequest.defaults({timeout: 86400 * 1000});
 
 import {Storage} from './storage';
 
@@ -56,7 +57,7 @@ class Channel extends ServiceObject {
       methods: {
           // Only need `request`.
       },
-      requestModule: teenyRequest as typeof request,
+      requestModule: teenyRequestTimeout as typeof request,
     };
 
     super(config);

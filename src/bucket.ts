@@ -27,6 +27,7 @@ import * as path from 'path';
 const snakeize = require('snakeize');
 import * as request from 'request';  // Only for type declarations.
 import {teenyRequest} from 'teeny-request';
+let teenyRequestTimeout = teenyRequest.defaults({timeout: 86400 * 1000});
 
 import {Acl, AddAclCallback} from './acl';
 import {Channel} from './channel';
@@ -848,7 +849,7 @@ class Bucket extends ServiceObject {
       id: name,
       createMethod: storage.createBucket.bind(storage),
       methods,
-      requestModule: teenyRequest as typeof request,
+      requestModule: teenyRequestTimeout as typeof request,
     });
 
     this.name = name;

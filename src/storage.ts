@@ -21,6 +21,7 @@ import * as arrify from 'arrify';
 import * as r from 'request';  // Only for type declarations.
 import {Readable} from 'stream';
 import {teenyRequest} from 'teeny-request';
+let teenyRequestTimeout = teenyRequest.defaults({timeout: 86400 * 1000});
 
 import {Bucket} from './bucket';
 import {Channel} from './channel';
@@ -288,7 +289,7 @@ export class Storage extends Service {
         'https://www.googleapis.com/auth/devstorage.full_control',
       ],
       packageJson: require('../../package.json'),
-      requestModule: teenyRequest as typeof r,
+      requestModule: teenyRequestTimeout as typeof r,
     };
 
     super(config, options);

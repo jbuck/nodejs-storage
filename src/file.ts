@@ -38,6 +38,7 @@ import * as url from 'url';
 import * as http from 'http';
 import * as r from 'request';  // Only for type declarations.
 import {teenyRequest} from 'teeny-request';
+let teenyRequestTimeout = teenyRequest.defaults({timeout: 86400 * 1000});
 
 import {Storage} from './storage';
 import {Bucket} from './bucket';
@@ -728,7 +729,7 @@ class File extends ServiceObject<File> {
       parent: bucket,
       baseUrl: '/o',
       id: encodeURIComponent(name),
-      requestModule: teenyRequest as typeof r,
+      requestModule: teenyRequestTimeout as typeof r,
       methods,
     });
 
@@ -2991,7 +2992,7 @@ class File extends ServiceObject<File> {
       },
       metadata: options.metadata,
       request: reqOpts,
-      requestModule: teenyRequest as typeof r,
+      requestModule: teenyRequestTimeout as typeof r,
     });
   }
 }
