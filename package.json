@@ -1,5 +1,5 @@
 {
-  "name": "@google-cloud/storage",
+  "name": "@jbuck/google-cloud-storage",
   "description": "Cloud Storage Client Library for Node.js",
   "version": "2.4.1",
   "license": "Apache-2.0",
